@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parallax website</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        background-color: #555;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .container img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .object.one {
+        width: 300px;
+        height: 300px;
+        rotate: 10deg;
+        top: 40%;
+        left: 30%;
+        filter: blur(3px);
+      }
+
+      .object.two {
+        width: 200px;
+        height: 200px;
+        rotate: 60deg;
+        bottom: 20%;
+        right: 30%;
+        filter: blur(3px);
+      }
+
+      .object.three {
+        width: 200px;
+        height: 200px;
+        rotate: -30deg;
+        top: 10%;
+        left: 20%;
+        filter: blur(2px);
+      }
+
+      .object.four {
+        width: 200px;
+        height: 200px;
+        rotate: -30deg;
+        top: 10%;
+        right: 20%;
+        filter: blur(3px);
+      }
+
+      .object:hover {
+        filter: none;
+        scale: 1.4;
+        transition: all 500ms ease-in-out;
+        cursor: pointer;
+      }
+
+      .container h2 {
+        position: absolute;
+        color: aliceblue;
+        font-size: 60px;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <img
+        src="https://res.cloudinary.com/dcxurp30f/image/upload/v1681041944/1_kcpbr7.png"
+        class="object one"
+        data-value="2"
+        alt="hoodie"
+      />
+      <img
+        src="https://res.cloudinary.com/dcxurp30f/image/upload/v1681041942/2_gu6ait.png"
+        class="object two"
+        data-value="6"
+        alt="cap"
+      />
+      <img
+        src="https://res.cloudinary.com/dcxurp30f/image/upload/v1681041944/3_hoko3f.png"
+        class="object three"
+        data-value="4"
+        alt="blue hoodie"
+      />
+      <img
+        src="https://res.cloudinary.com/dcxurp30f/image/upload/v1681041943/4_vvugrr.png"
+        class="object four"
+        data-value="-6"
+        alt="green jacket"
+      />
+      <h2>It's pavan effect</h2>
+    </div>
+
+    <script>
+      document.addEventListener("mousemove", (e) => {
+        const imagesList = document.querySelectorAll(".object");
+        imagesList.forEach((image) => {
+          const moveValue = image.getAttribute("data-value");
+          const x = (moveValue * e.clientX) / 150;
+          const y = (moveValue * e.clientY) / 150;
+          image.style.transform = `translate(${x}px,${y}px)`;
+        });
+      });
+    </script>
+  </body>
+</html>
